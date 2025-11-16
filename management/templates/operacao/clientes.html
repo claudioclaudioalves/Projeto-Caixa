@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Clientes</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/clientes.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{% url 'clientes' %}">Clientes</a> 
+            <a href="{% url 'planos' %}">Planos</a> 
+            <a href="{% url 'caixa' %}">Voltar ao Caixa</a>
+        </nav>
+    </header>
+
+    <div class="container-clientes">
+        <section class="lista-clientes">
+            <div class="grid-header">
+                <div>Nome</div>
+                <div>Plano</div>
+                <div>Vencimento</div>
+            </div>
+
+            {% for cliente in clientes %}
+                <div class="grid-row">
+                    <div class="nome-com-botoes">
+                        <span class="nome-cliente">{{ cliente.nome }}</span>
+                        <form method="GET">
+                            <input type="hidden" name="editar" value="{{ cliente.id }}">
+                            <button class="btn-pequeno" type="submit">Editar</button>
+                        </form>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="cliente_id" value="{{ cliente.id }}">
+                            <button class="btn-pequeno btn-vermelho" type="submit" name="deletar">Deletar</button>
+                        </form>
+                    </div>
+                    <div>{% if cliente.plano %}{{ cliente.plano.nome }}{% else %}-{% endif %}</div>
+                    <div>
+                        {% if cliente.plano %}
+                            {{ cliente.data_cadastro|date:"d/m/Y"|add:"30"|date:"d/m/Y" }}
+                        {% else %}
+                            -
+                        {% endif %}
+                    </div>
+                </div>
+            {% empty %}
+                <div class="grid-row">
+                    <div colspan="3">Nenhum cliente cadastrado</div>
+                </div>
+            {% endfor %}
+        </section>
+
+        <section class="form-cliente">
+            <h2>{% if cliente_para_editar %}Editar Cliente{% else %}Adicionar Cliente{% endif %}</h2>
+            <form method="POST">
+                {% csrf_token %}
+                {% if cliente_para_editar %}
+                    <input type="hidden" name="cliente_id" value="{{ cliente_para_editar.id }}">
+                {% endif %}
+
+                <label>Nome:</label>
+                <input type="text" name="nome" value="{% if cliente_para_editar %}{{ cliente_para_editar.nome }}{% endif %}" {% if not cliente_para_editar %}required{% endif %}>
+
+                <label>Placa:</label>
+                <input type="text" name="placa" value="{% if cliente_para_editar %}{{ cliente_para_editar.placa }}{% endif %}">
+
+                <label>Plano:</label>
+                <select name="plano_id">
+                    <option value="">-- Selecionar plano --</option>
+                    {% for plano in planos %}
+                        <option value="{{ plano.id }}" {% if cliente_para_editar and cliente_para_editar.plano and cliente_para_editar.plano.id == plano.id %}selected{% endif %}>
+                            {{ plano.nome }} - R$ {{ plano.valor }}
+                        </option>
+                    {% endfor %}
+                </select>
+
+                <button type="submit">{% if cliente_para_editar %}Salvar Alterações{% else %}Adicionar{% endif %}</button>
+            </form>
+        </section>
+    </div>
+</body>
+</html>

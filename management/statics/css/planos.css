@@ -1,0 +1,181 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8fafc;
+    color: #334155;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #1e3a8a;
+    color: #fff;
+    padding: 15px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header nav a {
+    color: #fff;
+    margin-right: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+header nav a:hover {
+    color: #0d9488;
+    text-decoration: underline;
+}
+
+h2 {
+    color: #1e3a8a;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.container-planos {
+    display: flex;
+    justify-content: center;
+    padding: 30px 20px;
+    gap: 30px;
+}
+
+.lista-planos {
+    flex: 2;
+    max-width: 800px;
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.form-plano {
+    flex: 1;
+    max-width: 450px;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilização da Lista e Itens */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-left: 5px solid #1e3a8a; /* Borda Azul Marinho */
+    padding: 12px 15px;
+    width: auto; 
+    margin-bottom: 10px; 
+    border-radius: 6px;
+    font-size: 1em;
+    font-weight: 500;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.2s;
+    
+    /* Regras para alinhar o nome do plano e o botão Deletar */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+ul li:hover {
+    background-color: #f0f4f8;
+}
+
+.plano-info {
+    /* Garante que o texto ocupe o espaço necessário */
+    margin-right: 15px;
+}
+
+/* Estilização do Formulário de Adicionar */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+form label {
+    display: block;
+    margin: 0;
+    font-weight: 600;
+    color: #1e3a8a;
+}
+
+form input[type="text"], 
+form input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 1em;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+form input:focus {
+    border-color: #0d9488;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.2);
+}
+
+form button[type="submit"] {
+    background-color: #1e3a8a;
+    color: white;
+    padding: 12px;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.1s;
+}
+
+form button[type="submit"]:hover {
+    background-color: #0d9488;
+    transform: translateY(-1px);
+}
+
+/* Estilos Reutilizados para o Botão Deletar */
+ul li form button {
+    height: 35px; 
+    line-height: 1; 
+    padding: 4px 10px; 
+    font-size: 0.85em; 
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s, transform 0.1s;
+
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+}
+
+.btn-pequeno {
+    /* Cor de fundo padrão (Teal, mas será sobrescrita pelo .btn-vermelho) */
+    background-color: #0d9488;
+    color: white;
+}
+
+.btn-vermelho {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.btn-vermelho:hover {
+    background-color: #c0392b;
+    transform: translateY(-1px);
+}
+
+
+/* Classes de Cliente Inativas */
+.grid-row, .grid-header, .nome-com-botoes, .container-clientes {
+    display: none;
+}

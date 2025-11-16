@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Caixa</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{% url 'clientes' %}">Clientes</a> 
+            <a href="{% url 'planos' %}">Planos</a>
+        </nav>
+    </header>
+
+    <main class="container" id="app">
+        <section class="registro">
+            <h2>Registrar Entrada do Mensalista</h2>
+            <form method="POST">
+                {% csrf_token %}
+                <label>Placa do cliente:</label>
+                
+                <input 
+                    type="text" 
+                    name="placa" 
+                    placeholder="Digite a placa ou escolha a placa" 
+                    list="lista-clientes-placas" 
+                    required
+                >
+                
+                <datalist id="lista-clientes-placas">
+                    {% for item in clientes_placas %}
+                        <option value="{{ item.placa }}"> Cliente: {{ item.nome }}</option>
+                    {% endfor %}
+                </datalist>
+
+                <button type="submit" name="entrada">Registrar Entrada</button>
+            </form>
+
+            <h2>Registrar Cliente Avulso</h2>
+            <form method="POST">
+                {% csrf_token %}
+                <label>Nome do cliente:</label>
+                <input type="text" name="nome_avulso" placeholder="Nome do cliente" required>
+                <label>Placa:</label>
+                <input type="text" name="placa_avulso" placeholder="ABC-1234">
+                <label>Tempo (horas):</label>
+                <select name="tempo_horas" required>
+                    <option value="1">1 hora - R$ 5,00</option>
+                    <option value="2">2 horas - R$ 10,00</option>
+                </select>
+                <label>Forma de pagamento:</label>
+                <select name="forma_pagamento" required>
+                    <option value="dinheiro">Dinheiro</option>
+                    <option value="pix">Pix</option>
+                </select>
+                <button type="submit" name="entrada_avulso">Registrar Entrada Avulso</button>
+            </form>
+        </section>
+
+        <section class="movimentos">
+            <h2>Clientes no Pátio 
+                ({{ clientes_no_patio_count }})
+            </h2>
+            
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            
+            {% if clientes_no_patio_count == 0 %}
+                <div>Nenhum cliente no pátio</div>
+            {% else %}
+                <ul>
+                    {% for movimento in movimentos %}
+                        <li>
+                            <div class="movimento-info">
+                                {{ movimento.nome_display }}
+                                {% if movimento.plano_display != '--' %}
+                                    - Plano: {{ movimento.plano_display }}
+                                {% endif %}
+                                - Placa: {{ movimento.placa }}
+                                - Entrada: {{ movimento.hora_entrada_local }}
+                                {% if movimento.valor_cobrado %}
+                                    - Valor: R$ {{ movimento.valor_cobrado }} ({% if movimento.forma_pagamento %}{{ movimento.forma_pagamento }}{% endif %})
+                                {% endif %}
+                            </div>
+
+                            <form method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="movimento_id" value="{{ movimento.id }}">
+                                <button type="submit" name="saida" class="btn-saida">Registrar Saída</button>
+                            </form>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </section>
+    </main>
+    
+    <script>
+        var clientesAtivosIniciais = {{ clientes_no_patio_count }}; 
+
+        var app = new Vue({
+            el: '#app', 
+            data: {
+                clientesNoPatio: clientesAtivosIniciais
+            },
+        });
+    </script>
+</body>
+</html>

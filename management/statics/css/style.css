@@ -1,0 +1,150 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8fafc; /* Fundo mais claro */
+    color: #334155;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header com o padrão de cores da aplicação */
+header {
+    background-color: #1e3a8a; /* Azul Marinho */
+    color: #fff;
+    padding: 15px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header nav a {
+    color: #fff;
+    margin-right: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+header nav a:hover {
+    color: #0d9488; /* Teal no hover */
+    text-decoration: underline;
+}
+
+h2 {
+    color: #1e3a8a;
+    font-size: 1.5em;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* Layout principal Flexbox */
+.container {
+    display: flex;
+    padding: 30px 20px;
+    gap: 30px; /* Mais espaçamento */
+    justify-content: center;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Estilo de Card para as seções */
+.registro, .movimentos {
+    background-color: #ffffff; /* Fundo branco */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.registro {
+    flex: 1;
+    max-width: 450px;
+}
+
+.movimentos {
+    flex: 2; /* Dá mais espaço para a lista de movimentos */
+    max-width: 700px;
+    max-height: 80vh; /* Altura controlada */
+    overflow-y: auto;
+}
+
+form label {
+    display: block;
+    margin: 15px 0 5px;
+    font-weight: 600;
+    color: #1e3a8a;
+}
+
+form input, form select, form button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 1em;
+}
+
+form input:focus, form select:focus {
+    border-color: #0d9488;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.2);
+}
+
+/* Botões Padrão (Registrar Entrada / Avulso) */
+button[type="submit"] {
+    background-color: #1e3a8a; /* Azul Marinho (principal) */
+    color: white;
+    padding: 12px;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.1s;
+}
+
+button[type="submit"]:hover {
+    background-color: #0d9488; /* Teal no hover */
+    transform: translateY(-1px);
+}
+
+/* Botão Registrar Saída (padrão de cliente: vermelho) */
+button.btn-saida {
+    background-color: #e74c3c; /* Vermelho para Saída/Deletar */
+    font-size: 0.9em;
+    padding: 5px 10px;
+    width: auto; /* Para não ocupar 100% da largura */
+    margin-left: 10px;
+}
+
+button.btn-saida:hover {
+    background-color: #c0392b;
+    transform: translateY(-1px);
+}
+
+
+/* Estilo da Lista de Movimentos */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    padding: 12px;
+    border: 1px solid #e2e8f0;
+    border-left: 5px solid #0d9488; /* Borda Teal para destaque */
+    margin-bottom: 10px;
+    border-radius: 6px;
+    background-color: #f8fafc;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.95em;
+}
+
+/* Estilo para as mensagens de sucesso/erro */
+ul.messages li {
+    background-color: #d1e7dd; /* Verde claro para sucesso */
+    color: #0f5132;
+    border: 1px solid #badbcc;
+    padding: 10px;
+    margin-bottom: 10px;
+}

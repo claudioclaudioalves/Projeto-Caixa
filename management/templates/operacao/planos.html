@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Planos</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/planos.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{% url 'clientes' %}">Clientes</a> 
+            <a href="{% url 'planos' %}">Planos</a> 
+            <a href="{% url 'caixa' %}">Voltar ao Caixa</a>
+        </nav>
+    </header>
+
+    <div class="container-planos">
+        
+        <section class="lista-planos">
+            <h2>Planos Mensalistas</h2> 
+            
+            <ul>
+                {% for plano in planos %}
+                    <li>
+                        <div class="plano-info">{{ plano.nome }} - R$ {{ plano.valor }}</div>
+                        
+                        <form method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="plano_id" value="{{ plano.id }}">
+                            <input type="hidden" name="deletar" value="true">
+                            <button class="btn-pequeno btn-vermelho" type="submit">Deletar</button>
+                        </form>
+                    </li>
+                {% empty %}
+                    <li>Nenhum plano cadastrado</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <section class="form-plano">
+            <h2>Adicionar Plano Mensalista</h2>
+            <form method="POST">
+                {% csrf_token %}
+                
+                <label>Nome:</label>
+                <input type="text" name="nome" placeholder="Nome do plano" required>
+                
+                <label>Valor:</label>
+                <input type="number" name="valor" step="0.01" placeholder="Valor do plano" required>
+                
+                <button type="submit">Adicionar</button>
+            </form>
+        </section>
+    </div>
+</body>
+</html>

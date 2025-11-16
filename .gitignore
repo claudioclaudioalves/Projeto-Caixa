@@ -1,0 +1,28 @@
+# Arquivos do Django e Python
+
+# Ambiente Virtual
+venv/
+env/
+
+# Cache de compilação do Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Banco de Dados SQLite
+*.sqlite3
+db.sqlite3
+
+# Arquivos de configurações sensíveis
+# Adicione aqui qualquer arquivo que contenha SECRETS (ex: se você usar um arquivo local para chaves)
+settings_local.py 
+
+# Arquivos de mídia e estáticos gerados
+/media/
+/static_root/
+
+# Arquivos de IDEs
+.DS_Store    # Mac OS
+.vscode/     # Configurações do VS Code
+.idea/       # Configurações do PyCharm/IntelliJ

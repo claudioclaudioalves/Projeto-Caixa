@@ -1,0 +1,156 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8fafc;
+    color: #334155;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #1e3a8a;
+    color: #fff;
+    padding: 15px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header nav a {
+    color: #fff;
+    margin-right: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+header nav a:hover {
+    color: #0d9488;
+    text-decoration: underline;
+}
+
+.container-clientes {
+    display: flex;
+    justify-content: center;
+    padding: 30px 20px;
+    gap: 30px;
+}
+
+.lista-clientes {
+    flex: 1;
+    max-width: 800px;
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.form-cliente {
+    flex: 1;
+    max-width: 450px;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.grid-header, .grid-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.grid-header {
+    font-weight: bold;
+    border-bottom: 2px solid #e2e8f0;
+    color: #1e3a8a;
+    margin-bottom: 10px;
+}
+
+.grid-row {
+    border-bottom: 1px solid #f0f4f8;
+    padding: 10px 0;
+    transition: background-color 0.2s;
+}
+
+.grid-row:hover {
+    background-color: #f8fafc;
+}
+
+.nome-com-botoes {
+    display: block;
+    text-align: center;
+}
+
+.nome-com-botoes form {
+    display: inline-block;
+    margin: 5px 4px 0;
+}
+
+.nome-com-botoes button {
+    height: 30px;
+    line-height: 1;
+    padding: 4px 10px;
+    font-size: 0.9em;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-pequeno {
+    background-color: #0d9488;
+    color: white;
+}
+
+.btn-pequeno:hover {
+    background-color: #1e3a8a;
+    transform: translateY(-1px);
+}
+
+.btn-vermelho {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.btn-vermelho:hover {
+    background-color: #c0392b;
+    transform: translateY(-1px);
+}
+
+form label {
+    display: block;
+    margin: 15px 0 5px;
+    font-weight: 600;
+    color: #1e3a8a;
+}
+
+form input, form select, form button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 1em;
+}
+
+form input:focus, form select:focus {
+    border-color: #0d9488;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.2);
+}
+
+form button {
+    background-color: #1e3a8a;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.1s;
+}
+
+form button:hover {
+    background-color: #0d9488;
+    transform: translateY(-1px);
+}
