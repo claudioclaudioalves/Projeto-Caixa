@@ -26,6 +26,7 @@ def clientes_view(request):
 
         if cliente_id and not "deletar" in request.POST:
             cliente = Cliente.objects.get(id=cliente_id)
+            cliente.nome = nome  # Linha adicionada para editar o nome
             cliente.placa = placa_maiuscula
             if plano_id:
                 cliente.plano = Plano.objects.get(id=plano_id)
